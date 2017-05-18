@@ -2,11 +2,9 @@ export class animal{
   constructor(name){
     this.name = name;
   }
-  sayhi(){
-    console.log(`hi ${this.name} !`);
-    // alert(this.name);
-    var mylove ;
+  sayHello(){
+    alert(`hello ${this.name} !`);
+    console.log(this.name);
   }
 }
-//export default animal ;
-export var myname = "mtjs " ;
+export default animal ;
