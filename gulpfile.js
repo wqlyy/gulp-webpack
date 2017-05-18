@@ -1,6 +1,6 @@
 // 载入gulp外挂程序
 var gulp = require('gulp');
-// var sass = require('gulp-ruby-sass');//编译Sass文件为 CSS文件
+var sass = require('gulp-sass');//编译Sass文件为 CSS文件
 var less = require('gulp-less');//编译less文件为css文件
 var autoprefixer = require('gulp-autoprefixer');//解析CSS文件并且添加浏览器前缀到CSS规则里
 var minifycss = require('gulp-minify-css');//压缩css文件，减小文件大小，并给引用url添加版本号避免缓存,同[gulp-clean-css]
@@ -18,18 +18,28 @@ var fileinclude = require('gulp-file-include');
 var webpack = require('gulp-webpack');
 
 // 样式
-gulp.task('styles', function() {
-  return gulp.src('src/css/*.less')
-  	  .pipe(less())
+gulp.task('styles-less', function() {
+  return gulp.src('src/css/*.less')//编译sass修改此处后缀为‘scss’
+  	  .pipe(less())//编译sass修改此处为sass(),更多用法google it!
   	  .pipe(gulp.dest('dist/css'))
       .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
       .pipe(gulp.dest('dist/css'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(minifycss())
       .pipe(gulp.dest('dist/css'))
-      .pipe(notify({ message: 'Styles task complete' }));
+      .pipe(notify({ message: 'Styles-less task complete' }));
 });
-
+gulp.task('styles-sass', function() {
+  return gulp.src('src/css/*.scss')//编译sass修改此处后缀为‘scss’
+      .pipe(sass())//编译sass修改此处为sass(),更多用法google it!
+      .pipe(gulp.dest('dist/css'))
+      .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+      .pipe(gulp.dest('dist/css'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(minifycss())
+      .pipe(gulp.dest('dist/css'))
+      .pipe(notify({ message: 'Styles-sass task complete' }));
+});
 // 脚本
 gulp.task('scripts', function(callback) {
   return gulp.src('src/entry.js')
@@ -78,14 +88,15 @@ gulp.task('clean', function() {
 
 // 预设任务
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'html');
+  gulp.start('styles-less','styles-sass', 'scripts', 'images', 'html');
 });
 
 
 gulp.task('watch', function() {
 
   // 看守所有.scss档
-  gulp.watch('src/css/**/*.less', ['styles']);
+  gulp.watch('src/css/**/*.less', ['styles-less']);
+  gulp.watch('src/css/**/*.scss', ['styles-scss']);
 
   // 看守所有.js档
   gulp.watch('src/js/**/*.js', ['scripts']);
