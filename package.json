@@ -1,17 +1,9 @@
 {
-  "name": "gulp&&webpack",
+  "name": "gulp-webpack",
   "version": "1.0.0",
-  "description": "gulp&&webpack 脚手架",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "es6"
-  ],
-  "author": "wangqiang",
-  "license": "ISC",
-  "dependencies": {
+  "description": "\"gulp&&webpack 脚手架\"",
+  "main": "\"index.js\"",
+   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "browser-sync": "^2.12.8",
     "gulp": "^3.9.1",
@@ -41,5 +33,21 @@
     "jshint": "^2.9.2",
     "tiny-lr": "^0.2.1",
     "webpack": "^1.13.1"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wqlyy/gulp-webpack.git"
+  },
+  "keywords": [
+    "'es6'"
+  ],
+  "author": "\"wangqiang\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wqlyy/gulp-webpack/issues"
+  },
+  "homepage": "https://github.com/wqlyy/gulp-webpack#readme"
 }
